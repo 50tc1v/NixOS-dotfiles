@@ -2,7 +2,7 @@
 
   imports = [
     ./hardware-configuration.nix
-    ./modules
+    ./modules/default.nix
   ];
 
   boot = {
@@ -54,42 +54,13 @@
 
   services.fstrim.enable = true;
 
-  services.flatpak.enable = true;  
-  
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-  };
-  
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [ intel-media-driver ];
-  };
-
   programs.zsh.enable = true;
 
-  programs.neovim = {
-    enable = true;
-    vimAlias = true;
-    configure = {
-      customRC = ''
-        set number
-        set relativenumber
-      '';
-      packages.myVimPackage = with pkgs.vimPlugins; {
-        start = [ vim-nix ];
-      };
-    };
-  };
-
-  users = {
-    defaultUserShell = pkgs.zsh;
-    users."victor" = {
-      isNormalUser = true;
-      group = "users";
-      extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
-    };
+  users.users."victor" = {
+    isNormalUser = true;
+    group = "users";
+    extraGroups = [ "wheel" "networkmanager" "audio" "video" ];
+    shell = pkgs.zsh;
   };
 
   nixpkgs.config.allowUnfree = true;  
@@ -97,9 +68,8 @@
   environment = {
     defaultPackages = lib.mkForce [];
     systemPackages = with pkgs; [
-      bat
       curl
-      exa
+      perl
       neovim
       wget
     ];

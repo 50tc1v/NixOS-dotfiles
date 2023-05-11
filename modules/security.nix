@@ -1,6 +1,6 @@
 { config, ... }: {
   
-  networking.firewall.allowedTCPPorts = [ 20 ];
+  networking.firewall.allowedTCPPorts = [ 777 ];
 
   services.openssh = {
     enable = true;
@@ -10,7 +10,7 @@
       kbdInteractiveAuthentication = false;
       permitRootLogin = "no";
     };
-    ports = [ 20 ];
+    ports = [ 777 ];
   };
 
   users.users."victor".openssh.authorizedKeys.keys = [];

@@ -93,11 +93,11 @@
       grep = "grep --color=always";
       bat = "bat -p";
       ip = "ip -color=always";
-      # Some useful aliases for git.
+      # Some useful short git aliases.
       gs = "git status";
       gc = "git commit";
-      gpll = "git pull";
-      gpsh = "git push origin $(current_branch)";
+      gpll = "git pull origin $(git_current_branch)";
+      gpsh = "git push origin $(git_current_branch)";
       # YT-DLP.
       yta-best = "yt-dlp --extract-audio --audio-format best";
       ytv-best = "yt-dlp -f bestvideo+bestaudio";
